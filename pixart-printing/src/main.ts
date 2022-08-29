@@ -6,7 +6,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ['verbose'],
   });
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transformOptions: { enableImplicitConversion: true },
+    }),
+  );
   await app.listen(3000);
 }
 bootstrap();
