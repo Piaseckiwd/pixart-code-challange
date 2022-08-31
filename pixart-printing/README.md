@@ -37,36 +37,74 @@ $ npm install
 ```bash
 # development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## Testing cURLs with examples
 
 ```bash
-# unit tests
-$ npm run test
+  Login:
+    returns an JWT token, the available credentials can be found inside pixart-printing/src/modules/auth/constants.ts
 
-# e2e tests
-$ npm run test:e2e
+    curl --request POST \
+  --url http://localhost:3000/auth/login \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"username": "piaseckiwd@gmail.com",
+	"password": "randomString123!"
+}'
 
-# test coverage
-$ npm run test:cov
+
+  Cart creation:
+    create a new cart with status that can be chosen between "CREATED","BUILDING" and "CHECKOUT".
+
+  curl --request POST \
+  --url http://localhost:3000/cart/create \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"ecommerce_id": "12",
+	"customer_id": "1",
+	"status": "CREATED"
+}'
+
+
+  Add items to the cart:
+    Adds new product into the users cart that has not been checked out. If there isn't a cart available it creates one.
+    Permitted file types can be found in pixart-printing/src/modules/cart/constants.ts
+    All the other parameters are for user to choose.
+
+  curl --request POST \
+  --url http://localhost:3000/cart/add-items \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"ecommerce_id": "12",
+	"customer_id": "1",
+	"item_list": [
+		{  "product_sku": "AAA123131AAA",
+  "product_name": "Quaderno",
+  "file_type": "PDF",
+  "quantity": 300,
+  "delivery_date": "2022-09-03T21:20:56.188Z"}
+	]
+}'
+
+
+  Getting the active cart:
+    Return users active cart (created or in building) if present, otherwise throws an error.
+
+  curl --request GET \
+  --url http://localhost:3000/cart/view-content/${ecommerce_id}/${customer_id}
+
+
+  Cart checkout:
+    returns the cart with its calculated price based on the checkout date.
+
+  curl --request GET \
+  --url http://localhost:3000/cart/checkout/${cart_id}
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - Wiktor Dariusz Piasceki
 
 ## License
 
