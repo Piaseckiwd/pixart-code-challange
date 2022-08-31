@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { CartStatus } from '../models/cart.class';
+import { CartStatus } from '../../constants';
 
 export class CreateCartDto {
   @IsNotEmpty()

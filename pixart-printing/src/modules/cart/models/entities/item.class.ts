@@ -1,9 +1,11 @@
+import { AllowedProductsFormats } from '../../constants';
+
 export class Item {
   product_sku: string;
 
   product_name: string;
 
-  file_type: string;
+  file_type: AllowedProductsFormats;
 
   quantity: number;
 

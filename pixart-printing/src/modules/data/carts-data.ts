@@ -1,3 +1,3 @@
-import { Cart } from '../cart/models/cart.class';
+import { Cart } from '../cart/models/entities/cart.class';
 
 export const cartsData: Cart[] = [];

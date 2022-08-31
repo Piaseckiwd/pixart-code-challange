@@ -1,3 +1,4 @@
+import { CartStatus } from '../../constants';
 import { Item } from './item.class';
 
 export class Cart {
@@ -17,13 +18,9 @@ export class Cart {
 
   item_list: Item[];
 
+  price: number;
+
   constructor(partial: Partial<Cart>) {
     Object.assign(this, partial);
   }
-}
-
-export enum CartStatus {
-  Created = 'CREATED',
-  Building = 'BUILDING',
-  Checkout = 'CHECKOUT',
 }

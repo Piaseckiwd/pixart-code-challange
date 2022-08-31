@@ -1,13 +1,15 @@
 import { Type } from 'class-transformer';
 import {
   IsDate,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsString,
   ValidateNested,
 } from 'class-validator';
+import { AllowedProductsFormats } from '../../constants';
 
-export class AddItemsDto {
+export class AddItemsToCartDto {
   @IsNotEmpty()
   @IsString()
   ecommerce_id: string;
@@ -28,8 +30,8 @@ class ItemDto {
   @IsString()
   product_name: string;
 
-  @IsString()
-  file_type: string;
+  @IsEnum(AllowedProductsFormats)
+  file_type: AllowedProductsFormats;
 
   @IsNumber()
   quantity: number;
