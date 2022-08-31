@@ -68,7 +68,7 @@ $ npm run start
 
 
   Add items to the cart:
-    Adds new product into the users cart that has not been checked out. If there isn\'t a cart available it creates one.
+    Adds new product into the users cart that has not been checked out. If there is not any cart available a new one is created.
     Permitted file types can be found in pixart-printing/src/modules/cart/constants.ts
     All the other parameters are for user to choose.
 
